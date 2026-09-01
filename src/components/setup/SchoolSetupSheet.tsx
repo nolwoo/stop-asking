@@ -42,7 +42,7 @@ export const SchoolSetupSheet = ({ isReset = false, onDone }: Props) => {
           <div className="flex justify-center mb-3">
             <WindowIcon />
           </div>
-          <h1 className="text-2xl font-black">우리반 창문</h1>
+          <h1 className="text-2xl font-black">그물</h1>
           {!isReset && (
             <p className="text-sm font-bold text-black/50 mt-1">
               우리 학교를 먼저 찾아볼게요

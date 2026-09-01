@@ -61,7 +61,7 @@ export const Dashboard = () => {
           <div className="flex items-center gap-2">
             <WindowIcon />
             <div>
-              <h1 className="font-black text-base leading-tight">{school?.SCHUL_NM ?? '우리반 창문'}</h1>
+              <h1 className="font-black text-base leading-tight">{school?.SCHUL_NM ?? '그물'}</h1>
               <p className="text-xs font-bold text-black/40">{formatToday()}</p>
             </div>
           </div>
@@ -82,10 +82,12 @@ export const Dashboard = () => {
         </header>
 
         <div className="space-y-3">
-          <VacationDdayWidget minimized={minimized} />
-          {!minimized && (
+          {minimized ? (
+            <VacationDdayWidget minimized />
+          ) : (
             <>
               <WeatherWidget />
+              <VacationDdayWidget />
               <CustomDdayList />
               <MealWidget />
             </>

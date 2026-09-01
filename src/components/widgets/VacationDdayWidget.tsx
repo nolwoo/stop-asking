@@ -41,9 +41,9 @@ export const VacationDdayWidget = ({ minimized = false }: { minimized?: boolean 
 
   if (loading && !vacation) {
     return (
-      <section className="bg-primary text-white border-2 border-black rounded-md shadow-brutal-lg p-5">
-        <p className="text-xs font-black uppercase tracking-widest text-white/80 mb-1">다음 방학까지</p>
-        <div className="flex items-center h-20"><LoadingDots size="md" /></div>
+      <section className="bg-primary text-white border-2 border-black rounded-md shadow-brutal p-4">
+        <p className="text-[11px] font-black uppercase tracking-widest text-white/80 mb-1">다음 방학까지</p>
+        <div className="flex items-center h-10"><LoadingDots size="md" /></div>
       </section>
     )
   }
@@ -63,17 +63,21 @@ export const VacationDdayWidget = ({ minimized = false }: { minimized?: boolean 
   }
 
   return (
-    <section className="bg-primary text-white border-2 border-black rounded-md shadow-brutal-lg p-5">
-      <p className="text-xs font-black uppercase tracking-widest text-white/80 mb-1">다음 방학까지</p>
-      <p className="text-xl font-black leading-tight">{vacation.eventName}</p>
-      <p className="text-6xl font-black leading-none tabular-nums tracking-tight mt-2">
-        {vacation.daysLeft === 0 ? 'D-Day' : `D-${vacation.daysLeft}`}
-      </p>
-      <p className="text-sm font-bold text-white/80 mt-3">
+    <section className="bg-primary text-white border-2 border-black rounded-md shadow-brutal p-4">
+      <div className="flex items-baseline justify-between gap-3">
+        <div className="min-w-0">
+          <p className="text-[11px] font-black uppercase tracking-widest text-white/70">다음 방학까지</p>
+          <p className="text-base font-black leading-tight truncate">{vacation.eventName}</p>
+        </div>
+        <p className="text-3xl font-black leading-none tabular-nums tracking-tight shrink-0">
+          {vacation.daysLeft === 0 ? 'D-Day' : `D-${vacation.daysLeft}`}
+        </p>
+      </div>
+      <p className="text-xs font-bold text-white/75 mt-2">
         {encouragement(vacation.daysLeft)} · {formatDateKr(vacation.date)}
       </p>
       {vacation.daysLeft === 0 && (
-        <p className="text-2xl font-black text-white/90 mt-2 animate-bounce">🎉 오늘부터 방학!</p>
+        <p className="text-lg font-black text-white/90 mt-1 animate-bounce">🎉 오늘부터 방학!</p>
       )}
     </section>
   )

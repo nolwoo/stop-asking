@@ -12,16 +12,16 @@ const AirRow = ({ label, value, grade }: { label: string; value: number; unit?: 
   const isWarning = grade.level >= 3
   const isCritical = grade.level >= 4
   return (
-    <div className={`flex items-center justify-between rounded px-2 py-1 border-2 ${
+    <div className={`flex items-center justify-between rounded-md px-3 py-2 border-2 ${
       isCritical ? 'border-red-500 bg-red-100' : isWarning ? 'border-amber-500 ' + grade.bgClass : grade.borderClass + ' ' + grade.bgClass}`}>
-      <div className="flex items-center gap-1 min-w-0">
-        {isWarning && <span aria-hidden="true" className="shrink-0">⚠️</span>}
-        <span className={`w-2 h-2 rounded-full border border-black shrink-0 ${grade.dotClass}`} />
-        <span className="text-xs font-black whitespace-nowrap">{label}</span>
+      <div className="flex items-center gap-1.5 min-w-0">
+        {isWarning && <span aria-hidden="true" className="shrink-0 text-base">⚠️</span>}
+        <span className={`w-3 h-3 rounded-full border-2 border-black shrink-0 ${grade.dotClass}`} />
+        <span className="text-sm font-black whitespace-nowrap">{label}</span>
       </div>
-      <div className="flex items-center gap-1 shrink-0 ml-1">
-        <span className="text-xs font-bold text-black/60 whitespace-nowrap">{value}</span>
-        <span className={`text-xs font-black px-1 py-0.5 rounded border border-current whitespace-nowrap ${grade.textClass}`}>{grade.label}</span>
+      <div className="flex items-center gap-1.5 shrink-0 ml-1">
+        <span className="text-base font-black text-black/70 whitespace-nowrap tabular-nums">{value}</span>
+        <span className={`text-sm font-black px-1.5 py-0.5 rounded border-2 border-current whitespace-nowrap ${grade.textClass}`}>{grade.label}</span>
       </div>
     </div>
   )
@@ -41,25 +41,25 @@ export const WeatherWidget = () => {
   const bgClass = weatherBgClass(now.weatherCode)
 
   return (
-    <BrutalCard className="overflow-hidden" shadow="md">
+    <BrutalCard className="overflow-hidden" shadow="lg">
       <button type="button" onClick={() => setShowWeekly((v) => !v)}
-        className={`w-full text-left p-4 ${bgClass} active:opacity-80 transition-opacity`}>
+        className={`w-full text-left p-5 ${bgClass} active:opacity-80 transition-opacity`}>
         <div className="flex items-start justify-between">
           <div>
-            <p className="text-xs font-bold text-black/50 uppercase tracking-widest mb-1">날씨</p>
+            <p className="text-sm font-bold text-black/50 uppercase tracking-widest mb-2">날씨</p>
             <div className="flex items-end gap-2">
-              <span className="text-5xl font-black leading-none">{now.temperature}°</span>
-              <span className="text-2xl leading-none mb-1">{emoji}</span>
+              <span className="text-7xl font-black leading-none">{now.temperature}°</span>
+              <span className="text-4xl leading-none mb-1.5">{emoji}</span>
             </div>
-            <p className="text-sm font-bold mt-1">{label}</p>
+            <p className="text-lg font-bold mt-1.5">{label}</p>
           </div>
-          <div className="flex flex-col items-end gap-1">
-            <div className="text-right text-xs font-bold text-black/60 space-y-0.5">
+          <div className="flex flex-col items-end gap-1.5">
+            <div className="text-right text-sm font-bold text-black/60 space-y-1">
               <p>체감 {now.apparent}°</p>
               <p>습도 {now.humidity}%</p>
               <p>바람 {now.windSpeed.toFixed(1)}m/s</p>
             </div>
-            <span className={`text-xs font-black px-2 py-1 rounded border-2 border-black mt-1 ${showWeekly ? 'bg-black text-white' : 'bg-white text-black'}`}>
+            <span className={`text-sm font-black px-2.5 py-1 rounded border-2 border-black mt-1 ${showWeekly ? 'bg-black text-white' : 'bg-white text-black'}`}>
               {showWeekly ? '접기 ▲' : '주간 ▼'}
             </span>
           </div>
@@ -83,7 +83,7 @@ export const WeatherWidget = () => {
       )}
 
       {airData && (
-        <div className="border-t-2 border-black p-3 grid grid-cols-2 gap-2">
+        <div className="border-t-2 border-black p-4 grid grid-cols-2 gap-3">
           <AirRow label="초미세먼지" value={airData.pm25} unit="μg/m³" grade={airData.pm25Grade} />
           <AirRow label="미세먼지" value={airData.pm10} unit="μg/m³" grade={airData.pm10Grade} />
         </div>
