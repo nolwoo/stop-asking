@@ -1,0 +1,36 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { box-sizing: border-box; }
+  html {
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    background-color: #FAFAF8;
+    color: #000000;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@layer utilities {
+  .shadow-brutal     { box-shadow: 2px 2px 0 #000; }
+  .shadow-brutal-md  { box-shadow: 4px 4px 0 #000; }
+  .shadow-brutal-lg  { box-shadow: 6px 6px 0 #000; }
+
+  .press-effect { transition: transform 0.08s ease, box-shadow 0.08s ease; }
+  .press-effect:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0 0 0 #000 !important;
+  }
+
+  .bg-dots {
+    background-image: radial-gradient(circle, #00000012 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+}
