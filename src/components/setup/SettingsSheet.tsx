@@ -115,7 +115,15 @@ export const SettingsSheet = ({ onClose }: Props) => {
               >
                 open.neis.go.kr
               </a>
-              에서 무료 발급 후 붙여넣기
+              에서 무료 발급 후 붙여넣기.{' '}
+              <a
+                href="/neis-guide.html"
+                target="_blank"
+                rel="noreferrer"
+                className="underline text-primary"
+              >
+                발급 방법 →
+              </a>
             </p>
             <div className="flex gap-2">
               <input

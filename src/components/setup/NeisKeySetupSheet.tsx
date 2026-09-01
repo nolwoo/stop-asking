@@ -42,6 +42,16 @@ export const NeisKeySetupSheet = ({ onComplete }: Props) => {
             </a>
             에서 무료 발급 후 붙여넣기 하세요.
           </p>
+          <p className="text-xs font-bold mb-4 -mt-2">
+            <a
+              href="/neis-guide.html"
+              target="_blank"
+              rel="noreferrer"
+              className="underline text-primary"
+            >
+              발급 방법 자세히 보기 →
+            </a>
+          </p>
           <input
             type="password"
             value={keyInput}
