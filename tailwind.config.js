@@ -9,9 +9,17 @@ export default {
           DEFAULT: '#4F46E5',
           foreground: '#FFFFFF',
         },
+        block: {
+          lime: '#DCEEB1',
+          lilac: '#C5B0F4',
+          cream: '#F4ECD6',
+          mint: '#C8E6CD',
+          navy: '#1F1D3D',
+        },
       },
       fontFamily: {
         sans: ['Pretendard Variable', 'Pretendard', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
       },
       boxShadow: {
         brutal: '2px 2px 0 #000',

@@ -68,13 +68,13 @@ export const Dashboard = () => {
           <div className="flex items-center gap-2">
             <span className="font-black text-2xl tabular-nums select-none" aria-label="현재 시각">{formatTime(now)}</span>
             <button type="button" onClick={() => setMinimized((v) => !v)}
-              className={`w-10 h-10 flex items-center justify-center border-2 rounded-md transition-all ${
+              className={`w-10 h-10 flex items-center justify-center border-2 rounded-full transition-all ${
                 minimized ? 'bg-black text-white border-black' : 'border-black/30 text-black/50 hover:border-black hover:text-black hover:bg-black/5'}`}
               aria-label={minimized ? '전체 보기' : '최소화'}>
               <MinimizeIcon minimized={minimized} />
             </button>
             <button type="button" onClick={() => setShowSettings(true)}
-              className="w-10 h-10 flex items-center justify-center border-2 border-black/30 rounded-md text-black/50 hover:border-black hover:text-black hover:bg-black/5 transition-all"
+              className="w-10 h-10 flex items-center justify-center border-2 border-black/30 rounded-full text-black/50 hover:border-black hover:text-black hover:bg-black/5 transition-all"
               aria-label="설정">
               <SettingsIcon />
             </button>

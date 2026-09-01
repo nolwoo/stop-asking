@@ -26,7 +26,7 @@ export const BrutalButton = ({ children, variant='primary', size='md', fullWidth
     <button
       {...rest} disabled={isDisabled}
       className={[
-        'inline-flex items-center justify-center gap-2 font-bold rounded-md transition-all duration-75 select-none',
+        'inline-flex items-center justify-center gap-2 font-bold rounded-full transition-all duration-75 select-none',
         variantStyles[variant], sizeStyles[size],
         fullWidth ? 'w-full' : '',
         isDisabled ? 'opacity-50 cursor-not-allowed pointer-events-none' : 'cursor-pointer',

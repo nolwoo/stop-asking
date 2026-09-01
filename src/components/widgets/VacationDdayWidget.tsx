@@ -31,7 +31,7 @@ export const VacationDdayWidget = ({ minimized = false }: { minimized?: boolean 
     if (!vacation) return null
     return (
       <div className="mt-3 flex items-center justify-center">
-        <div className="flex items-center gap-3 bg-primary text-white px-5 py-3 rounded-full border-2 border-black font-black text-sm">
+        <div className="flex items-center gap-3 bg-block-navy text-white px-5 py-3 rounded-full font-black text-sm">
           <span>방학까지</span>
           <span className="text-lg">{vacation.daysLeft === 0 ? 'D-Day' : `D-${vacation.daysLeft}`}</span>
         </div>
@@ -41,8 +41,8 @@ export const VacationDdayWidget = ({ minimized = false }: { minimized?: boolean 
 
   if (loading && !vacation) {
     return (
-      <section className="bg-primary text-white border-2 border-black rounded-md shadow-brutal p-4">
-        <p className="text-[11px] font-black uppercase tracking-widest text-white/80 mb-1">다음 방학까지</p>
+      <section className="bg-block-navy text-white rounded-[24px] p-4">
+        <span className="eyebrow text-white/50">Next break</span>
         <div className="flex items-center h-10"><LoadingDots size="md" /></div>
       </section>
     )
@@ -50,8 +50,8 @@ export const VacationDdayWidget = ({ minimized = false }: { minimized?: boolean 
 
   if (!vacation) {
     return (
-      <section className="bg-white border-2 border-dashed border-black/40 rounded-md p-5">
-        <p className="text-xs font-black uppercase tracking-widest text-black/40 mb-2">다음 방학까지</p>
+      <section className="bg-white border-2 border-dashed border-black/40 rounded-[24px] p-5">
+        <span className="eyebrow mb-2 block">Next break</span>
         <p className="text-3xl mb-2">🏫</p>
         <p className="font-black text-base">방학 일정이 없어요</p>
         <p className="text-xs font-bold text-black/40 mt-1 leading-relaxed">
@@ -63,17 +63,15 @@ export const VacationDdayWidget = ({ minimized = false }: { minimized?: boolean 
   }
 
   return (
-    <section className="bg-primary text-white border-2 border-black rounded-md shadow-brutal p-4">
-      <div className="flex items-baseline justify-between gap-3">
-        <div className="min-w-0">
-          <p className="text-[11px] font-black uppercase tracking-widest text-white/70">다음 방학까지</p>
-          <p className="text-base font-black leading-tight truncate">{vacation.eventName}</p>
-        </div>
-        <p className="text-3xl font-black leading-none tabular-nums tracking-tight shrink-0">
+    <section className="bg-block-navy text-white rounded-[24px] p-5">
+      <span className="eyebrow text-white/50">Next break</span>
+      <div className="flex items-baseline justify-between gap-3 mt-2">
+        <p className="text-base font-black leading-tight truncate min-w-0">{vacation.eventName}</p>
+        <p className="text-4xl font-black leading-none tabular-nums tracking-tight shrink-0">
           {vacation.daysLeft === 0 ? 'D-Day' : `D-${vacation.daysLeft}`}
         </p>
       </div>
-      <p className="text-xs font-bold text-white/75 mt-2">
+      <p className="text-xs font-bold text-white/70 mt-2">
         {encouragement(vacation.daysLeft)} · {formatDateKr(vacation.date)}
       </p>
       {vacation.daysLeft === 0 && (

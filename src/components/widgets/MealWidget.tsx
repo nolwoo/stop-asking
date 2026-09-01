@@ -1,14 +1,13 @@
-import { BrutalCard } from '../ui/BrutalCard'
 import { LoadingDots } from '../ui/LoadingDots'
 import { useMeal } from '../../hooks/useMeal'
 
 export const MealWidget = () => {
   const { dishes, meal, loading, empty } = useMeal()
   return (
-    <BrutalCard className="p-5" shadow="md">
+    <section className="rounded-[24px] bg-block-cream p-5">
       <div className="flex items-center justify-between mb-4">
-        <p className="text-sm font-bold text-black/50 uppercase tracking-widest">오늘 급식</p>
-        {meal && <span className="text-sm font-bold bg-amber-100 border border-black/20 rounded px-2 py-0.5">{meal.MMEAL_SC_NM}</span>}
+        <span className="eyebrow">School lunch</span>
+        {meal && <span className="text-xs font-black border-2 border-black rounded-full px-2.5 py-0.5">{meal.MMEAL_SC_NM}</span>}
       </div>
       {loading && dishes.length === 0
         ? <div className="flex items-center gap-2 h-10"><LoadingDots size="sm" /></div>
@@ -22,11 +21,11 @@ export const MealWidget = () => {
                   <span>{dish}</span>
                 </li>
               ))}
-              {dishes.length > 10 && <li className="col-span-2 text-sm font-bold text-black/30">외 {dishes.length - 10}가지</li>}
+              {dishes.length > 10 && <li className="col-span-2 text-sm font-bold text-black/40">외 {dishes.length - 10}가지</li>}
             </ul>
-            {meal?.CAL_INFO && <p className="text-sm font-bold text-black/40 mt-3 text-right">{meal.CAL_INFO}</p>}
+            {meal?.CAL_INFO && <p className="text-sm font-bold text-black/50 mt-3 text-right">{meal.CAL_INFO}</p>}
           </>
       }
-    </BrutalCard>
+    </section>
   )
 }
