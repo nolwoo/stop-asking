@@ -55,29 +55,34 @@ export const Dashboard = () => {
   if (showSettings) return <SettingsSheet onClose={() => setShowSettings(false)} />
 
   return (
-    <div className="min-h-screen bg-bg bg-dots">
+    <div className="min-h-screen bg-white">
       <div className="max-w-md mx-auto px-4 py-4 pb-8">
-        <header className="flex items-center justify-between mb-5">
-          <div className="flex items-center gap-2">
-            <WindowIcon />
-            <div>
-              <h1 className="font-black text-base leading-tight">{school?.SCHUL_NM ?? '그물'}</h1>
-              <p className="text-sm font-bold text-black/50">{formatToday()}</p>
+        <header className="mb-5">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <WindowIcon />
+              <h1 className="text-[13px] font-semibold text-black/50">{school?.SCHUL_NM ?? '그물'}</h1>
+            </div>
+            <div className="flex items-center gap-2">
+              <button type="button" onClick={() => setMinimized((v) => !v)}
+                className={`w-9 h-9 flex items-center justify-center rounded-full transition-colors ${
+                  minimized ? 'bg-black text-white' : 'bg-[#f5f5f7] text-black/70 hover:bg-[#e8e8ed]'}`}
+                aria-label={minimized ? '전체 보기' : '최소화'}>
+                <MinimizeIcon minimized={minimized} />
+              </button>
+              <button type="button" onClick={() => setShowSettings(true)}
+                className="w-9 h-9 flex items-center justify-center rounded-full bg-[#f5f5f7] text-black/70 hover:bg-[#e8e8ed] transition-colors"
+                aria-label="설정">
+                <SettingsIcon />
+              </button>
             </div>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="font-black text-4xl tabular-nums select-none" aria-label="현재 시각">{formatTime(now)}</span>
-            <button type="button" onClick={() => setMinimized((v) => !v)}
-              className={`w-10 h-10 flex items-center justify-center border-2 rounded-full transition-all ${
-                minimized ? 'bg-black text-white border-black' : 'border-black/30 text-black/50 hover:border-black hover:text-black hover:bg-black/5'}`}
-              aria-label={minimized ? '전체 보기' : '최소화'}>
-              <MinimizeIcon minimized={minimized} />
-            </button>
-            <button type="button" onClick={() => setShowSettings(true)}
-              className="w-10 h-10 flex items-center justify-center border-2 border-black/30 rounded-full text-black/50 hover:border-black hover:text-black hover:bg-black/5 transition-all"
-              aria-label="설정">
-              <SettingsIcon />
-            </button>
+          {/* 날짜·시각이 이 화면에서 제일 자주 보는 정보라 헤더의 주인공으로 크게 둔다 */}
+          <div className="mt-1.5">
+            <p className="text-[22px] font-semibold text-black tracking-tight">{formatToday()}</p>
+            <p className="text-[64px] font-semibold leading-none tracking-tight tabular-nums text-black mt-0.5 select-none" aria-label="현재 시각">
+              {formatTime(now)}
+            </p>
           </div>
         </header>
 
