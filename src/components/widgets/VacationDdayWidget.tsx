@@ -50,10 +50,10 @@ export const VacationDdayWidget = ({ minimized = false }: { minimized?: boolean 
 
   if (!vacation) {
     return (
-      <section className="bg-white border-2 border-dashed border-black/40 rounded-[24px] p-5">
-        <span className="eyebrow mb-2 block">Next break</span>
-        <p className="text-3xl mb-2">🏫</p>
-        <p className="font-black text-base">방학 일정이 없어요</p>
+      <section className="bg-white border-2 border-dashed border-black/40 rounded-2xl p-3.5">
+        <span className="eyebrow mb-1.5 block">Next break</span>
+        <p className="text-xl mb-1">🏫</p>
+        <p className="font-black text-sm">방학 일정이 없어요</p>
         <p className="text-xs font-bold text-black/40 mt-1 leading-relaxed">
           학교 NEIS에 방학이 등록 안 됐어요.<br />
           ⚙ 설정 → 내 D-day에서 이름에 <b className="text-black">방학</b>을 넣어 추가하면 여기에 표시돼요.
@@ -63,19 +63,19 @@ export const VacationDdayWidget = ({ minimized = false }: { minimized?: boolean 
   }
 
   return (
-    <section className="bg-block-navy text-white rounded-[24px] p-5">
+    <section className="bg-block-navy text-white rounded-2xl p-3.5">
       <span className="eyebrow text-white/50">Next break</span>
-      <div className="flex items-baseline justify-between gap-3 mt-2">
-        <p className="text-base font-black leading-tight truncate min-w-0">{vacation.eventName}</p>
-        <p className="text-4xl font-black leading-none tabular-nums tracking-tight shrink-0">
+      <div className="flex items-baseline justify-between gap-3 mt-1.5">
+        <p className="text-sm font-black leading-tight truncate min-w-0">{vacation.eventName}</p>
+        <p className="text-2xl font-black leading-none tabular-nums tracking-tight shrink-0">
           {vacation.daysLeft === 0 ? 'D-Day' : `D-${vacation.daysLeft}`}
         </p>
       </div>
-      <p className="text-xs font-bold text-white/70 mt-2">
+      <p className="text-xs font-bold text-white/70 mt-1.5">
         {encouragement(vacation.daysLeft)} · {formatDateKr(vacation.date)}
       </p>
       {vacation.daysLeft === 0 && (
-        <p className="text-lg font-black text-white/90 mt-1 animate-bounce">🎉 오늘부터 방학!</p>
+        <p className="text-base font-black text-white/90 mt-1 animate-bounce">🎉 오늘부터 방학!</p>
       )}
     </section>
   )

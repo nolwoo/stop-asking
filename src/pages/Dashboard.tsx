@@ -62,11 +62,11 @@ export const Dashboard = () => {
             <WindowIcon />
             <div>
               <h1 className="font-black text-base leading-tight">{school?.SCHUL_NM ?? '그물'}</h1>
-              <p className="text-xs font-bold text-black/40">{formatToday()}</p>
+              <p className="text-sm font-bold text-black/50">{formatToday()}</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <span className="font-black text-2xl tabular-nums select-none" aria-label="현재 시각">{formatTime(now)}</span>
+            <span className="font-black text-4xl tabular-nums select-none" aria-label="현재 시각">{formatTime(now)}</span>
             <button type="button" onClick={() => setMinimized((v) => !v)}
               className={`w-10 h-10 flex items-center justify-center border-2 rounded-full transition-all ${
                 minimized ? 'bg-black text-white border-black' : 'border-black/30 text-black/50 hover:border-black hover:text-black hover:bg-black/5'}`}
@@ -87,9 +87,9 @@ export const Dashboard = () => {
           ) : (
             <>
               <WeatherWidget />
+              <MealWidget />
               <VacationDdayWidget />
               <CustomDdayList />
-              <MealWidget />
             </>
           )}
         </div>
