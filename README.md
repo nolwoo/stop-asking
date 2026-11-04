@@ -24,3 +24,7 @@ React 19 · TypeScript · Vite · Tailwind CSS v3 · Zustand (+persist) · vite-
 1. 학교 검색 → 선택
 2. NEIS API 키 입력 (open.neis.go.kr 무료 발급) — "나중에" 스킵 가능
 3. 대시보드. 설정은 각 브라우저의 localStorage에 저장됨 (파일에 안 박힘)
+
+## 라이선스
+
+[MIT](LICENSE)
