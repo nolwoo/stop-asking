@@ -44,7 +44,7 @@ export const NeisKeySetupSheet = ({ onComplete }: Props) => {
           </p>
           <p className="text-xs font-bold mb-4 -mt-2">
             <a
-              href="/neis-guide.html"
+              href="./neis-guide.html"
               target="_blank"
               rel="noreferrer"
               className="underline text-primary"

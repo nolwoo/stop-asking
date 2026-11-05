@@ -36,7 +36,11 @@ const yyyymmdd = (d: Date): string =>
 const fetchJson = async (url: string): Promise<unknown> => {
   const res = await fetch(url)
   if (!res.ok) throw new Error(`NEIS ${res.status}`)
-  return res.json()
+  const json = await res.json()
+  // NEIS는 오류도 200으로 돌려주고 RESULT.CODE에 담는다(INFO-200 = 데이터 없음은 정상, ERROR-* = 실패).
+  const code = (json as { RESULT?: { CODE?: string } })?.RESULT?.CODE
+  if (typeof code === 'string' && code.startsWith('ERROR')) throw new Error(`NEIS ${code}`)
+  return json
 }
 
 const extractRows = (raw: unknown, rootKey: string): Record<string, string>[] => {
@@ -71,10 +75,8 @@ export const getMeal = async (
   date: Date = new Date()
 ): Promise<Meal[]> => {
   const url = `${BASE}/mealServiceDietInfo?Type=json&pIndex=1&pSize=10${getKeyParam()}&ATPT_OFCDC_SC_CODE=${ATPT_OFCDC_SC_CODE}&SD_SCHUL_CODE=${SD_SCHUL_CODE}&MLSV_YMD=${yyyymmdd(date)}`
-  try {
-    const raw = await fetchJson(url)
-    return extractRows(raw, 'mealServiceDietInfo') as unknown as Meal[]
-  } catch { return [] }
+  const raw = await fetchJson(url)
+  return extractRows(raw, 'mealServiceDietInfo') as unknown as Meal[]
 }
 
 export const getSchedule = async (
@@ -86,18 +88,16 @@ export const getSchedule = async (
   const PAGE_SIZE = 100
   const base = `${BASE}/SchoolSchedule?Type=json&pSize=${PAGE_SIZE}${getKeyParam()}&ATPT_OFCDC_SC_CODE=${ATPT_OFCDC_SC_CODE}&SD_SCHUL_CODE=${SD_SCHUL_CODE}&AA_FROM_YMD=${yyyymmdd(from)}&AA_TO_YMD=${yyyymmdd(to)}`
   const allItems: ScheduleItem[] = []
-  try {
-    let page = 1
-    let totalCount = Infinity
-    while (allItems.length < totalCount && page <= 20) {
-      const raw = await fetchJson(`${base}&pIndex=${page}`)
-      if (page === 1) totalCount = extractTotalCount(raw, 'SchoolSchedule')
-      const rows = extractRows(raw, 'SchoolSchedule') as unknown as ScheduleItem[]
-      if (rows.length === 0) break
-      allItems.push(...rows)
-      page++
-    }
-  } catch {}
+  let page = 1
+  let totalCount = Infinity
+  while (allItems.length < totalCount && page <= 20) {
+    const raw = await fetchJson(`${base}&pIndex=${page}`)
+    if (page === 1) totalCount = extractTotalCount(raw, 'SchoolSchedule')
+    const rows = extractRows(raw, 'SchoolSchedule') as unknown as ScheduleItem[]
+    if (rows.length === 0) break
+    allItems.push(...rows)
+    page++
+  }
   return allItems
 }
 

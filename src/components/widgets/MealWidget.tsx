@@ -2,7 +2,7 @@ import { LoadingDots } from '../ui/LoadingDots'
 import { useMeal } from '../../hooks/useMeal'
 
 export const MealWidget = () => {
-  const { dishes, meal, loading, empty } = useMeal()
+  const { dishes, meal, loading, empty, error } = useMeal()
   return (
     <section className="rounded-[18px] bg-[#fafafc] p-5">
       <div className="flex items-center justify-between mb-3.5">
@@ -11,6 +11,8 @@ export const MealWidget = () => {
       </div>
       {loading && dishes.length === 0
         ? <div className="flex items-center gap-2 h-10"><LoadingDots size="sm" /></div>
+        : error
+        ? <p className="text-base font-medium text-black/40 py-2">급식 정보를 불러오지 못했어요. 잠시 후 다시 시도해요.</p>
         : empty
         ? <p className="text-base font-medium text-black/30 py-2">오늘 급식 정보가 없어요</p>
         : <>
