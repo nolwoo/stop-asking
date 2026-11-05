@@ -49,7 +49,9 @@ export const weatherDescription = (code: number, isDay = true): { label: string;
   if (code === 3) return { label: '흐림', emoji: '☁️' }
   if ([45, 48].includes(code)) return { label: '안개', emoji: '🌫️' }
   if ([51, 53, 55].includes(code)) return { label: '이슬비', emoji: '🌦️' }
+  if ([56, 57].includes(code)) return { label: '어는 이슬비', emoji: '🌧️' }
   if ([61, 63, 65].includes(code)) return { label: '비', emoji: '🌧️' }
+  if ([66, 67].includes(code)) return { label: '어는 비', emoji: '🌧️' }
   if ([71, 73, 75, 77].includes(code)) return { label: '눈', emoji: '🌨️' }
   if ([80, 81, 82].includes(code)) return { label: '소나기', emoji: '🌦️' }
   if ([85, 86].includes(code)) return { label: '눈 소나기', emoji: '🌨️' }

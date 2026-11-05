@@ -38,6 +38,7 @@ export const SettingsSheet = ({ onClose }: Props) => {
   }
 
   const handleSaveKey = () => {
+    clearAllCache() // 키 없이 받아 둔 결과를 버리고 새 키로 다시 불러온다
     setNeisKey(keyInput.trim())
     setKeySaved(true)
     setTimeout(() => setKeySaved(false), 2000)
@@ -117,7 +118,7 @@ export const SettingsSheet = ({ onClose }: Props) => {
               </a>
               에서 무료 발급 후 붙여넣기.{' '}
               <a
-                href="/neis-guide.html"
+                href="./neis-guide.html"
                 target="_blank"
                 rel="noreferrer"
                 className="underline text-primary"

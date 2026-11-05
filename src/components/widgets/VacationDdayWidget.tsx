@@ -14,7 +14,7 @@ const encouragement = (daysLeft: number): string => {
 }
 
 export const VacationDdayWidget = ({ minimized = false }: { minimized?: boolean }) => {
-  const { vacation: neisVacation, loading } = useSchedule()
+  const { vacation: neisVacation, loading, error } = useSchedule()
   const customDdays = useSettingsStore((s) => s.customDdays)
   const customPick = pickCustomVacation(customDdays)
   const vacation = neisVacation ?? (customPick ? customToDday(customPick) : null)
@@ -53,9 +53,9 @@ export const VacationDdayWidget = ({ minimized = false }: { minimized?: boolean 
       <section className="bg-white border border-dashed border-black/15 rounded-[18px] p-3.5">
         <span className="eyebrow mb-1.5 block">Next break</span>
         <p className="text-xl mb-1">🏫</p>
-        <p className="font-semibold text-sm">방학 일정이 없어요</p>
+        <p className="font-semibold text-sm">{error ? '학사일정을 불러오지 못했어요' : '방학 일정이 없어요'}</p>
         <p className="text-xs font-medium text-black/40 mt-1 leading-relaxed">
-          학교 NEIS에 방학이 등록 안 됐어요.<br />
+          {error ? '잠시 후 다시 시도해요. NEIS 키를 확인해 보세요.' : '학교 NEIS에 방학이 등록 안 됐어요.'}<br />
           ⚙ 설정 → 내 D-day에서 이름에 <b className="text-black font-semibold">방학</b>을 넣어 추가하면 여기에 표시돼요.
         </p>
       </section>
